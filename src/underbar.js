@@ -102,6 +102,21 @@
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array, isSorted, iterator) {
+    // start new array of values
+
+    iterator = iterator || _.identity;
+
+    let out = [];
+    let modifiedout = [];
+
+    _.each(array, (element) => {
+      if (!modifiedout.includes(iterator(element))) {
+        out.push(element);
+        modifiedout.push(iterator(element));
+      }
+    });
+
+    return out;
   };
 
 
